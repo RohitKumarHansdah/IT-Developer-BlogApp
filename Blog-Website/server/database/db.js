@@ -2,11 +2,17 @@ import mongoose from 'mongoose';
 
 const Connection = async () => {
   try {
-    console.log('Connecting to MongoDB with URI:', process.env.MONGODB_URI?.substring(0, 50) + '...');
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log('Database connected successfully');
+    const mongoUri = process.env.MONGODB_URI;
+    
+    if (!mongoUri) {
+      throw new Error('MONGODB_URI is not defined in .env file');
+    }
+    
+    console.log('🔗 Connecting to MongoDB...');
+    await mongoose.connect(mongoUri);
+    console.log('✅ Database connected successfully');
   } catch (error) {
-    console.log('Error while connecting to the database ', error.message);
+    console.error('❌ Error while connecting to database:', error.message);
     process.exit(1);
   }
 };

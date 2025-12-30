@@ -4,8 +4,6 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-
-// Components
 import Connection from './database/db.js';
 import Router from './routes/route.js';
 
@@ -28,5 +26,5 @@ Connection();
 // Start Server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log(`Server is running successfully on PORT ${PORT}`);
+  console.log(`✅ Server running on PORT ${PORT}`);
 });
